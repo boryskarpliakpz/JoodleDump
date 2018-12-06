@@ -12,8 +12,8 @@ namespace GameModel
     public class GameSession
     {
         static string DataPath = "predefined.dat";
-        [DataMember]
-        public Pers Personage { get; set; }
+       // [DataMember]
+        //public Pers Personage { get; set; }
 
         [DataMember]
         public List<Event> Events { get; set; } 
@@ -22,20 +22,20 @@ namespace GameModel
 
         GameSession()
         {
-            Personage = new Pers(PersoState.Dead, 3, new Point(0, 0));
+            //Personage = new Pers(PersoState.Dead, 3, new Point(0, 0));
             Events = new List<Event>()
             {
-                new Event("Something good", "Add health"),
-                new Event("Something bad", "Decrease health")
+                new Event(){ Name = "Something good", ModelChanges = "Add health"},
+                new Event(){Name = "Something bad", ModelChanges = "Decrease health"}
             };
             Platforms = new List<Platform>()
             {
-                new Platform(PlatformType.Stable, new Point(0, 1)),
-                new Platform(PlatformType.Stable, new Point(0, 2)),
-                new Platform(PlatformType.Unstable, new Point(0, 3)),
-                new Platform(PlatformType.Stable, new Point(0, 4)),
-                new Platform(PlatformType.Unstable, new Point(0, 5)),
-                new Platform(PlatformType.Unstable, new Point(0, 5))
+                new Platform(){ PlatformType = PlatformType.Stable, Position = "0 1"}, //new Point(0, 1)},
+                new Platform(){ PlatformType = PlatformType.Stable, Position = "0 1"}, //new Point(0, 2)},
+                new Platform(){ PlatformType = PlatformType.Unstable, Position = "0 1"}, //new Point(0, 3)},
+                new Platform(){ PlatformType = PlatformType.Stable, Position = "0 1"}, //new Point(0, 4)},
+                new Platform(){ PlatformType = PlatformType.Unstable, Position = "0 1"}, //new Point(0, 5)},
+                new Platform(){ PlatformType = PlatformType.Unstable, Position = "0 1"} //new Point(0, 5)}
             };
         }
         public void Save()

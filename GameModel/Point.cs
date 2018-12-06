@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using System.Security.Cryptography.X509Certificates;
 
 namespace GameModel
 {
@@ -15,9 +16,16 @@ namespace GameModel
             Y = y;
         }
 
+        public Point(string formatted)
+        {
+            var coords = formatted.Split(' ');
+            X = Convert.ToInt32(coords[0]);
+            Y = Convert.ToInt32(coords[1]);
+        }
+
         public override string ToString()
         {
-            return String.Format("X = {0} Y = {1}", X, Y);
+            return String.Format("{0} {1}", X, Y);
         }
     }
 }

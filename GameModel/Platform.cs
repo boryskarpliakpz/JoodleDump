@@ -18,12 +18,7 @@ namespace GameModel
         public PlatformType PlatformType { get; set; }
 
         [DataMember]
-        public Point Position { get; set; }
+        public string Position { get; set; }
 
-        public Platform(PlatformType platformType, Point position)
-        {
-            PlatformType = platformType;
-            Position = position;
-        }
     }
 }
