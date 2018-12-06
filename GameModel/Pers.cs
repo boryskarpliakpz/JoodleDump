@@ -1,10 +1,15 @@
 ﻿using System.Runtime.Serialization;
 
+[DataContract]
 public enum PersoState
 {
+    [EnumMember]
     Dead,
+    [EnumMember]
     Bad,
+    [EnumMember]
     Well,
+    [EnumMember]
     Nice
 }
 

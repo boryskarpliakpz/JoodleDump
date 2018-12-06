@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -12,15 +13,16 @@ namespace GameModel
     {
         static string DataPath = "predefined.dat";
         [DataMember]
-        public Pers pers;
+        public Pers Personage { get; set; }
+
         [DataMember]
-        public IEnumerable<Event> Events { get; set; } 
+        public List<Event> Events { get; set; } 
         [DataMember]
-        public IEnumerable<Platform> Platforms { get; set;  }
+        public List<Platform> Platforms { get; set;  }
 
         GameSession()
         {
-            pers = new Pers(PersoState.Dead, 3, new Point(0, 0));
+            Personage = new Pers(PersoState.Dead, 3, new Point(0, 0));
             Events = new List<Event>()
             {
                 new Event("Something good", "Add health"),
@@ -33,6 +35,7 @@ namespace GameModel
                 new Platform(PlatformType.Unstable, new Point(0, 3)),
                 new Platform(PlatformType.Stable, new Point(0, 4)),
                 new Platform(PlatformType.Unstable, new Point(0, 5)),
+                new Platform(PlatformType.Unstable, new Point(0, 5))
             };
         }
         public void Save()
@@ -42,16 +45,20 @@ namespace GameModel
 
         public static GameSession Load()
         {
-            return DataSerializer.DeserializeItem(DataPath);
+            if(File.Exists(DataPath))
+                return DataSerializer.DeserializeItem(DataPath);
+
+            return new GameSession();
+        }
+
+        public static void update()
+        {
+            GameSession gameSession = new GameSession();
+            gameSession.Save();
         }
 
         public static void Main(string[] args)
         {
-            GameSession gameSession = new GameSession();
-            //gameSession.Save();
-
-            GameSession gameSession2 = GameSession.Load();
-            var a = 0;
         }
     }
 

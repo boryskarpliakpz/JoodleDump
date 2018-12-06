@@ -1,8 +1,11 @@
 ﻿using System.Runtime.Serialization;
 
+[DataContract]
 public enum PlatformType
 {
+    [EnumMember]
     Stable,
+    [EnumMember]
     Unstable
 }
 
@@ -12,10 +15,10 @@ namespace GameModel
     public class Platform
     {
         [DataMember]
-        public PlatformType PlatformType;
+        public PlatformType PlatformType { get; set; }
 
         [DataMember]
-        public Point Position;
+        public Point Position { get; set; }
 
         public Platform(PlatformType platformType, Point position)
         {
